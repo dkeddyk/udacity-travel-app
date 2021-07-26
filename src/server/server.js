@@ -16,9 +16,8 @@ const app = express();
  */
 
 /* Middleware*/
-const bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 /* Cors */
 const cors = require('cors');
@@ -30,7 +29,9 @@ app.use(cors());
  */
 
 // Static link to Website folder
-app.use(express.static('website'));
+app.use(express.static('dist'));
+
+console.log(__dirname);
 
 // Port Setting
 const port = 5000;
@@ -43,6 +44,10 @@ app.listen(port, () => log('> Server is up and running on port : ' + port));
  */
 
 /* Routes */
+
+app.get('/', (req, res) => {
+  res.sendFile('dist/index.html');
+});
 
 // GET Weather based on a ZIP code
 app.get('/weather', (req, res) => {

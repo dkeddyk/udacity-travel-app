@@ -1,27 +1,54 @@
 {
-  "name": "package",
+  "name": "travel-app",
   "version": "1.0.0",
-  "description": "## Overview This project requires you to create an asynchronous web app that uses Web API and user data to dynamically update the UI.",
+  "description": "## Overview This project is part of the udacity nanodegree fend and actually is the capstone right before graduation.",
   "main": "server.js",
+  "jest": {
+    "testEnvironment": "jsdom",
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    }
+  },
   "dependencies": {
-    "body-parser": "^1.19.0",
+    "@babel/runtime": "^7.14.8",
+    "@fortawesome/fontawesome-free": "^5.15.3",
     "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "node-fetch": "^2.6.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.14.5",
+    "@babel/preset-env": "^7.14.8",
+    "babel": "^6.23.0",
+    "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^4.0.0-alpha.0",
+    "css-loader": "^6.2.0",
+    "file-loader": "^6.2.0",
+    "html-loader": "^2.1.2",
+    "html-webpack-plugin": "^5.3.2",
+    "jest": "^27.0.6",
+    "node-sass": "^6.0.1",
+    "sass-loader": "^12.1.0",
+    "style-loader": "^3.2.1",
+    "webpack": "^5.46.0",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^3.11.2"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "test": "Jest",
+    "start": "node ./src/server/server.js",
+    "build": "webpack --config webpack.prod.js",
+    "serve": "webpack serve --config webpack.dev.js --open"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dkeddyk/udacity-weather-journal-app.git"
+    "url": "git+https://github.com/dkeddyk/udacity-travel-app.git"
   },
   "author": "Daniel Kuehn",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/dkeddyk/udacity-weather-journal-app/issues"
+    "url": "https://github.com/dkeddyk/udacity-travel-app/issues"
   },
-  "homepage": "https://github.com/dkeddyk/udacity-weather-journal-app#readme"
+  "homepage": "https://github.com/dkeddyk/udacity-travel-app#readme"
 }

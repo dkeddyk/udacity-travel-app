@@ -1,4 +1,4 @@
-import { generate } from './js/app.js';
+import { generate } from './js/controller';
 
 import './styles/style.scss';
 

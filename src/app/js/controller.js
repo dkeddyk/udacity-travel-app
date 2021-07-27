@@ -1,20 +1,28 @@
-import { getWeather, getData, postContent } from './middleware.js';
+import { getCity, getData, postContent } from './middleware.js';
 import { createInfo, writeRecentEntry } from './view.js';
 
 // Event listener to add function to existing HTML DOM element
 
 /* Function called by event listener */
 const generate = () => {
-  const zip = document.querySelector('#zip').value;
-  const content = document.querySelector('#feelings').value;
-  const country = document.querySelector('#country').value;
-  if (!zip) {
+  // const zip = document.querySelector('#zip').value;
+  // const content = document.querySelector('#feelings').value;
+  const cityString = document.querySelector('#city').value;
+  if (!cityString) {
     alert('Please enter a Zipcode');
     return;
   }
-  getWeather(country, zip)
-    .then((weather) => {
-      postContent(content, createInfo(weather))
+  getCity(cityString)
+    .then((city) => {
+      console.log(city);
+      if (city) {
+      } else {
+        alert(
+          `Could not find a city, which is starts with the given string: ${cityString}`
+        );
+      }
+      console.log(city);
+      /* postContent(content, createInfo(weather))
         .then(() => {
           getData().then((projectData) => {
             writeRecentEntry(projectData);
@@ -24,7 +32,7 @@ const generate = () => {
           alert('There was an error posting your content!');
           log(postError);
           return;
-        });
+        });*/
     })
     .catch((weatherError) => {
       alert('There was an error gathering the current weather!');

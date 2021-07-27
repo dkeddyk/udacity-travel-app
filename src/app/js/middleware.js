@@ -6,10 +6,10 @@
  * @param {String} zip Common postal-zip codes which should be handeled by Weather APIs.
  * @return {Object} representing the weather info provided by the server
  */
-const getWeather = async (country, zip) =>
-  fetch(`/weather?zip=${zip}&country=${country}`, {
+const getCity = async (city) =>
+  fetch(`http://localhost:5000/geoname?&city=${city}`, {
     method: 'GET',
-    mode: 'same-origin',
+    mode: 'cors',
   }).then((response) => response.json().then((weatherObj) => weatherObj));
 
 /**
@@ -35,4 +35,4 @@ const postContent = async (content, info) =>
     body: JSON.stringify({ content: content, info: info }),
   });
 
-export { getWeather, getData, postContent };
+export { getCity, getData, postContent };

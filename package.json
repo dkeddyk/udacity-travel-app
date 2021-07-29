@@ -39,6 +39,7 @@
     "test": "Jest",
     "start": "node ./src/server/server.js",
     "build": "webpack --config webpack.prod.js",
+    "build-start": "webpack --config webpack.prod.js && node ./src/server/server.js",
     "serve": "webpack serve --config webpack.dev.js --open"
   },
   "repository": {

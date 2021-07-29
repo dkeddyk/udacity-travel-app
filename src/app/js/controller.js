@@ -21,7 +21,6 @@ const generate = () => {
           `Could not find a city, which is starts with the given string: ${cityString}`
         );
       }
-      console.log(city);
       /* postContent(content, createInfo(weather))
         .then(() => {
           getData().then((projectData) => {

@@ -15,16 +15,33 @@
     </div>
     <div class="row">
       <div class="holder country">
-        <label for="city">Enter City here</label>
+        <label for="city">Destination</label>
         <input type="text" id="city" placeholder="enter your city here">
       </div>
-      <div class="row row-bottom">
-        <div class="holder feel">
-          <label for="feelings">How are you feeling today?</label>
-          <textarea class="myInput" id="feelings" placeholder="Enter your feelings here" rows="9" cols="50"></textarea>
-        </div>
-        <button id="generate" type="submit"> Generate </button>
+    </div>
+    <div class="row">
+      <div class="holder start-date">
+        <label for="start">Start Date</label>
+        <input type="date" id="start" name="trip-start">
       </div>
+      <div class="info-text" id="new-countdown"></div>
+    </div>
+    <div class="row">
+      <div class="holder end-date">
+        <label for="end">End Date</label>
+        <input type="date" id="end" name="trip-end">
+      </div>
+      <div class="info-text" id="new-nights"></div>
+    </div>
+    <div class="row row-bottom">
+      <div class="holder feel">
+        <label for="feelings">How are you feeling today?</label>
+        <textarea class="myInput" id="feelings" placeholder="Enter your feelings here" rows="9" cols="50"></textarea>
+      </div>
+      <button id="generate" type="submit"> Generate </button>
+    </div>
+
+    <div class="row">
       <div class="holder entry">
         <div class="title">Most Recent Entry</div>
         <div id="entryHolder">
@@ -34,6 +51,7 @@
         </div>
       </div>
     </div>
+  </div>
 
 </body>
 

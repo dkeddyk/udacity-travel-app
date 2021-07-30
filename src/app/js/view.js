@@ -15,4 +15,17 @@ const writeRecentEntry = (entry) => {
   document.querySelector('#content').innerHTML = entry.content;
 };
 
-export { createInfo, writeRecentEntry };
+function setDateInputs(start, end) {
+  document.querySelector('#start').valueAsDate = start;
+  document.querySelector('#end').valueAsDate = end;
+}
+
+function setCountdown(countdown) {
+  document.querySelector('#new-countdown').textContent = countdown;
+}
+
+function setNights(nights) {
+  document.querySelector('#new-nights').textContent = nights;
+}
+
+export { setDateInputs, createInfo, writeRecentEntry, setCountdown, setNights };

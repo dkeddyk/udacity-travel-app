@@ -1,3 +1,5 @@
+const host = 'http://localhost:5000';
+
 /* Function to GET Web API Data*/
 
 /**
@@ -7,7 +9,13 @@
  * @return {Object} representing the weather info provided by the server
  */
 const getCity = async (city) =>
-  fetch(`http://localhost:5000/geoname?&city=${city}`, {
+  fetch(`${host}/geoname?&city=${city}`, {
+    method: 'GET',
+    mode: 'cors',
+  }).then((response) => response.json().then((cityObj) => cityObj));
+
+const getWeather = async (lat, lon) =>
+  fetch(`${host}/weather?&lat=${lat}&lon=${lon}`, {
     method: 'GET',
     mode: 'cors',
   }).then((response) => response.json().then((weatherObj) => weatherObj));
@@ -35,4 +43,4 @@ const postContent = async (content, info) =>
     body: JSON.stringify({ content: content, info: info }),
   });
 
-export { getCity, getData, postContent };
+export { getCity, getWeather, getData, postContent };

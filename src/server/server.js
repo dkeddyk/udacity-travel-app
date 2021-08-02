@@ -45,8 +45,11 @@ app.listen(port, () => log('> Server is up and running on port : ' + port));
 
 app.get('/', require('./routes').root);
 
-// GET Weather based on a ZIP code
+// GET City based on the name
 app.get('/geoname', require('./routes').geoname);
+
+// GET Weather based on the coordinates
+app.get('/weather', require('./routes').weather);
 
 /* API Calls */
 

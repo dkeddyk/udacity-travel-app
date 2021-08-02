@@ -1,10 +1,11 @@
-import { getCity, getData, postContent } from './middleware.js';
+import { getCity, getWeather, getData, postContent } from './middleware.js';
 import {
   createInfo,
   writeRecentEntry,
   setCountdown,
   setNights,
   setDateInputs,
+  setWeather,
 } from './view.js';
 import { getCountdown, getNights } from './model.js';
 
@@ -12,8 +13,6 @@ import { getCountdown, getNights } from './model.js';
 
 /* Function called by event listener */
 const generate = () => {
-  // const zip = document.querySelector('#zip').value;
-  // const content = document.querySelector('#feelings').value;
   const cityString = document.querySelector('#city').value;
   if (!cityString) {
     alert('Please enter a Zipcode');
@@ -23,6 +22,7 @@ const generate = () => {
     .then((city) => {
       console.log(city);
       if (city) {
+        getWeather(city.lat, city.lng).then((weather) => setWeather(weather));
       } else {
         alert(
           `Could not find a city, which is starts with the given string: ${cityString}`

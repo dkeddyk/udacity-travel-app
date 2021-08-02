@@ -1,3 +1,5 @@
+const weatherIcons = require('../assets/weatherbit/weatherbit-icons');
+
 /* Function to make an info string, containing the place, temperature and main-weather */
 const createInfo = (weather) => {
   // convert from kelvin to celsius
@@ -28,4 +30,22 @@ function setNights(nights) {
   document.querySelector('#new-nights').textContent = nights;
 }
 
-export { setDateInputs, createInfo, writeRecentEntry, setCountdown, setNights };
+function setWeather(weather) {
+  console.log(weather);
+
+  const weatherIcon = new Image();
+  weatherIcon.src = weatherIcons.get(weather.weather.icon);
+  document.querySelector('#weather_icon').replaceChildren(weatherIcon);
+  document.querySelector('#weather_shorty').textContent = `${
+    weather.temp
+  }°C, ${Math.round(weather.wind_spd)} km/h ${weather.wind_cdir}`;
+}
+
+export {
+  setDateInputs,
+  setWeather,
+  createInfo,
+  writeRecentEntry,
+  setCountdown,
+  setNights,
+};

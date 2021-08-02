@@ -1,12 +1,12 @@
 const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '../../../.env') });
-const geonamesAPI = 'http://api.geonames.org/searchJSON?';
+const geonamesApi = 'http://api.geonames.org/searchJSON?';
 const geonamesApiKey = 'username=' + process.env.GEONAMES_USERNAME;
 const fetch = require('node-fetch');
 const log = require('../log/log');
 
 const getCityFromApi = async (city) => {
-  const url = `${geonamesAPI}name_startsWith=${city}&${geonamesApiKey}`;
+  const url = `${geonamesApi}name_startsWith=${city}&${geonamesApiKey}`;
   log(
     `External GET from GeoNames API: Requesting current weather in ${city} with ${url}.`
   );

@@ -1,5 +1,6 @@
 const apis = {
-  getCityFromApi: require('./apis/geonames'),
+  geonames: require('./apis/geonames'),
+  weather: require('./apis/weatherbit').getCurrentWeatherFromApi,
 };
 const log = require('./log/log');
 
@@ -31,7 +32,7 @@ function geoname(req, res) {
     return;
   }
   log('GET /geoname: Requsting city from an external Api');
-  cityPromise = apis.getCityFromApi(city);
+  cityPromise = apis.geonames(city);
   cityPromise
     .then((city) => {
       log('GET /geoname: Request from external Api successful');
@@ -49,5 +50,16 @@ function geoname(req, res) {
     });
 }
 
+function weather(req, res) {
+  const { lat, lon } = req.query;
+
+  if (lat && lon) {
+    apis.weather(lat, lon).then((weatherData) => res.send(weatherData));
+  } else res.status(200).send(false);
+  log('GET /geoname: response sent');
+  return;
+}
+
 module.exports.root = root;
 module.exports.geoname = geoname;
+module.exports.weather = weather;

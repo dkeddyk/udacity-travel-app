@@ -1,6 +1,7 @@
 const apis = {
   geonames: require('./apis/geonames'),
   weather: require('./apis/weatherbit').getCurrentWeatherFromApi,
+  historicWeather: require('./apis/weatherbit').getHistoricWeatherFromApi,
 };
 const log = require('./log/log');
 
@@ -60,6 +61,19 @@ function weather(req, res) {
   return;
 }
 
+function historicWeather(req, res) {
+  const { lat, lon, start, end } = req.query;
+
+  if (lat && lon && start && end) {
+    apis
+      .historicWeather(lat, lon, start, end)
+      .then((weatherData) => res.send(weatherData));
+  } else res.status(200).send(false);
+  log('GET /geoname: response sent');
+  return;
+}
+
 module.exports.root = root;
 module.exports.geoname = geoname;
 module.exports.weather = weather;
+module.exports.historicWeather = historicWeather;

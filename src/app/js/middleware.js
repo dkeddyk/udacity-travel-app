@@ -15,10 +15,19 @@ const getCity = async (city) =>
   }).then((response) => response.json().then((cityObj) => cityObj));
 
 const getWeather = async (lat, lon) =>
-  fetch(`${host}/weather?&lat=${lat}&lon=${lon}`, {
+  fetch(`${host}/weather/current?&lat=${lat}&lon=${lon}`, {
     method: 'GET',
     mode: 'cors',
   }).then((response) => response.json().then((weatherObj) => weatherObj));
+
+const getHistoricWeather = async (lat, lon, start, end) =>
+  fetch(
+    `${host}/weather/historic?&lat=${lat}&lon=${lon}&start=${start}&end=${end}`,
+    {
+      method: 'GET',
+      mode: 'cors',
+    }
+  ).then((response) => response.json().then((weatherObj) => weatherObj));
 
 /**
  * Requests the current data from the server and returns it as an object
@@ -43,4 +52,4 @@ const postContent = async (content, info) =>
     body: JSON.stringify({ content: content, info: info }),
   });
 
-export { getCity, getWeather, getData, postContent };
+export { getCity, getWeather, getHistoricWeather, getData, postContent };

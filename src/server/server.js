@@ -49,7 +49,10 @@ app.get('/', require('./routes').root);
 app.get('/geoname', require('./routes').geoname);
 
 // GET Weather based on the coordinates
-app.get('/weather', require('./routes').weather);
+app.get('/weather/current', require('./routes').weather);
+
+// GET Weather based on the coordinates
+app.get('/weather/historic', require('./routes').historicWeather);
 
 /* API Calls */
 

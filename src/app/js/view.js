@@ -31,8 +31,6 @@ function setNights(nights) {
 }
 
 function setWeather(weather) {
-  console.log(weather);
-
   const weatherIcon = new Image();
   weatherIcon.src = weatherIcons.get(weather.weather.icon);
   document.querySelector('#weather_icon').replaceChildren(weatherIcon);
@@ -41,9 +39,18 @@ function setWeather(weather) {
   }°C, ${Math.round(weather.wind_spd)} km/h ${weather.wind_cdir}`;
 }
 
+function setHistoricWeather(weather) {
+  console.log(weather);
+  document.querySelector('#historic_weather_shorty').textContent = `${
+    weather.min_temp
+  }°C, ${weather.max_temp}°C, ${Math.round(weather.wind_spd)} km/h, ${
+    weather.clouds
+  }% Clouds`;
+}
 export {
   setDateInputs,
   setWeather,
+  setHistoricWeather,
   createInfo,
   writeRecentEntry,
   setCountdown,

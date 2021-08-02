@@ -1,4 +1,10 @@
-import { getCity, getWeather, getData, postContent } from './middleware.js';
+import {
+  getCity,
+  getWeather,
+  getHistoricWeather,
+  getData,
+  postContent,
+} from './middleware.js';
 import {
   createInfo,
   writeRecentEntry,
@@ -6,23 +12,29 @@ import {
   setNights,
   setDateInputs,
   setWeather,
+  setHistoricWeather,
 } from './view.js';
 import { getCountdown, getNights } from './model.js';
 
 // Event listener to add function to existing HTML DOM element
 
 /* Function called by event listener */
-const generate = () => {
-  const cityString = document.querySelector('#city').value;
-  if (!cityString) {
-    alert('Please enter a Zipcode');
-    return;
-  }
+const search = (cityString, start, end) => {
+  const year = new Date().getFullYear();
+  const diff = new Date(end).getFullYear() - new Date(start).getFullYear();
+  start = new Date(new Date(start).setFullYear(year - diff - 1))
+    .toISOString()
+    .slice(0, 10);
+  end = new Date(new Date(end).setFullYear(year - 1))
+    .toISOString()
+    .slice(0, 10);
   getCity(cityString)
     .then((city) => {
-      console.log(city);
       if (city) {
         getWeather(city.lat, city.lng).then((weather) => setWeather(weather));
+        getHistoricWeather(city.lat, city.lng, start, end).then(
+          (historicWeather) => setHistoricWeather(historicWeather)
+        );
       } else {
         alert(
           `Could not find a city, which is starts with the given string: ${cityString}`
@@ -73,4 +85,4 @@ const log = (message) => {
 
 // adding click event listener to generate button
 
-export { initDateInput, refreshCountdown, refreshNights, log, generate };
+export { initDateInput, refreshCountdown, refreshNights, log, search };

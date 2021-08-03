@@ -51,9 +51,8 @@ app.get('/geoname', require('./routes').geoname);
 // GET Weather based on the coordinates
 app.get('/weather/current', require('./routes').weather);
 
-// GET Weather based on the coordinates
+// GET Historic Weather
 app.get('/weather/historic', require('./routes').historicWeather);
 
-/* API Calls */
-
-// Protocol Functions
+// GET Picture based on the search string
+app.get('/picture', require('./routes').cityPicture);

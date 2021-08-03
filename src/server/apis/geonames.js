@@ -17,6 +17,25 @@ const getCityFromApi = async (city) => {
     log(
       'External GET from GeoNames API: Received Response. Try to unpack JSON.'
     );
+
+    // return {
+    //   adminCode1: '08',
+    //   lng: '7.40425',
+    //   geonameId: 2956206,
+    //   toponymName: 'Andernach',
+    //   countryId: '2921044',
+    //   fcl: 'P',
+    //   population: 29599,
+    //   countryCode: 'DE',
+    //   name: 'Andernach',
+    //   fclName: 'city, village,...',
+    //   adminCodes1: { ISO3166_2: 'RP' },
+    //   countryName: 'Germany',
+    //   fcodeName: 'populated place',
+    //   adminName1: 'Rheinland-Pfalz',
+    //   lat: '50.43109',
+    //   fcode: 'PPL',
+    // };
     return result
       .json()
       .then((obj) => {

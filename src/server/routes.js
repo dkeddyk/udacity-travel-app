@@ -2,6 +2,7 @@ const apis = {
   geonames: require('./apis/geonames'),
   weather: require('./apis/weatherbit').getCurrentWeatherFromApi,
   historicWeather: require('./apis/weatherbit').getHistoricWeatherFromApi,
+  cityPicture: require('./apis/pixabay'),
 };
 const log = require('./log/log');
 
@@ -73,7 +74,19 @@ function historicWeather(req, res) {
   return;
 }
 
+function cityPicture(req, res) {
+  if (req.query.query) {
+    apis.cityPicture(req.query.query).then((pictureData) => {
+      if (pictureData) res.send(pictureData);
+      else return res.status(200).send(false);
+    });
+  } else res.status(200).send(false);
+  log('GET /picture: response sent');
+  return;
+}
+
 module.exports.root = root;
 module.exports.geoname = geoname;
 module.exports.weather = weather;
 module.exports.historicWeather = historicWeather;
+module.exports.cityPicture = cityPicture;

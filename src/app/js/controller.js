@@ -4,6 +4,7 @@ import {
   getHistoricWeather,
   getData,
   postContent,
+  getPicture,
 } from './middleware.js';
 import {
   createInfo,
@@ -13,6 +14,7 @@ import {
   setDateInputs,
   setWeather,
   setHistoricWeather,
+  setCityPicture,
 } from './view.js';
 import { getCountdown, getNights } from './model.js';
 
@@ -35,6 +37,14 @@ const search = (cityString, start, end) => {
         getHistoricWeather(city.lat, city.lng, start, end).then(
           (historicWeather) => setHistoricWeather(historicWeather)
         );
+        getPicture(city.name).then(async (imgObj) => {
+          console.log(imgObj);
+          if (!imgObj)
+            await getPicture(city.countryName).then((countryImage) => {
+              imgObj = countryImage;
+            });
+          setCityPicture(imgObj.webformatURL);
+        });
       } else {
         alert(
           `Could not find a city, which is starts with the given string: ${cityString}`

@@ -40,17 +40,22 @@ function setWeather(weather) {
 }
 
 function setHistoricWeather(weather) {
-  console.log(weather);
   document.querySelector('#historic_weather_shorty').textContent = `${
     weather.min_temp
   }°C, ${weather.max_temp}°C, ${Math.round(weather.wind_spd)} km/h, ${
     weather.clouds
   }% Clouds`;
 }
+
+function setCityPicture(url) {
+  document.querySelector('#image').setAttribute('src', url);
+}
+
 export {
   setDateInputs,
   setWeather,
   setHistoricWeather,
+  setCityPicture,
   createInfo,
   writeRecentEntry,
   setCountdown,

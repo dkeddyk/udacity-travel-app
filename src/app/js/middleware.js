@@ -29,6 +29,14 @@ const getHistoricWeather = async (lat, lon, start, end) =>
     }
   ).then((response) => response.json().then((weatherObj) => weatherObj));
 
+const getPicture = async (query) => {
+  query = query.trim().replaceAll(' ', '+');
+  return fetch(`${host}/picture?query=${query}`, {
+    method: 'GET',
+    mode: 'cors',
+  }).then((response) => response.json().then((pictureObj) => pictureObj));
+};
+
 /**
  * Requests the current data from the server and returns it as an object
  *
@@ -52,4 +60,11 @@ const postContent = async (content, info) =>
     body: JSON.stringify({ content: content, info: info }),
   });
 
-export { getCity, getWeather, getHistoricWeather, getData, postContent };
+export {
+  getCity,
+  getWeather,
+  getHistoricWeather,
+  getPicture,
+  getData,
+  postContent,
+};

@@ -8,9 +8,6 @@ const log = require('../log/log');
 
 const getCurrentWeatherFromApi = async (lat, lon) => {
   const url = `${currentWeatherApi}lat=${lat}&lon=${lon}&key=${weatherbitApiKey}`;
-  log(
-    `External GET from Weatherbit API: Requesting current weather for coords lat=${lat}&lon=${lon}  with ${url}.`
-  );
   return Promise.resolve({
     rh: 50.8852,
     pod: 'd',
@@ -53,6 +50,9 @@ const getCurrentWeatherFromApi = async (lat, lon) => {
     elev_angle: 45.33,
     app_temp: 21.4,
   });
+  log(
+    `External GET from Weatherbit API: Requesting current weather for coords lat=${lat}&lon=${lon}  with ${url}.`
+  );
   return fetch(url, {
     method: 'GET',
     mode: 'cors',

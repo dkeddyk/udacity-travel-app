@@ -2,19 +2,16 @@ import {
   getCity,
   getWeather,
   getHistoricWeather,
-  getData,
-  postContent,
   getPicture,
 } from './middleware.js';
 import {
-  createInfo,
-  writeRecentEntry,
   setCountdown,
   setNights,
   setDateInputs,
   setWeather,
   setHistoricWeather,
   setCityPicture,
+  setCityDetails,
 } from './view.js';
 import { getCountdown, getNights } from './model.js';
 
@@ -33,12 +30,12 @@ const search = (cityString, start, end) => {
   getCity(cityString)
     .then((city) => {
       if (city) {
+        setCityDetails(city);
         getWeather(city.lat, city.lng).then((weather) => setWeather(weather));
         getHistoricWeather(city.lat, city.lng, start, end).then(
           (historicWeather) => setHistoricWeather(historicWeather)
         );
         getPicture(city.name).then(async (imgObj) => {
-          console.log(imgObj);
           if (!imgObj)
             await getPicture(city.countryName).then((countryImage) => {
               imgObj = countryImage;

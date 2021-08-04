@@ -37,34 +37,4 @@ const getPicture = async (query) => {
   }).then((response) => response.json().then((pictureObj) => pictureObj));
 };
 
-/**
- * Requests the current data from the server and returns it as an object
- *
- * @return {Object} holding the recent data provided by the server
- */
-const getData = async () =>
-  fetch(`/data`, {
-    method: 'GET',
-    mode: 'same-origin',
-  }).then((response) => response.json().then((data) => data));
-
-/* Function to POST data */
-
-const postContent = async (content, info) =>
-  fetch(`/feelings/add`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    mode: 'same-origin',
-    body: JSON.stringify({ content: content, info: info }),
-  });
-
-export {
-  getCity,
-  getWeather,
-  getHistoricWeather,
-  getPicture,
-  getData,
-  postContent,
-};
+export { getCity, getWeather, getHistoricWeather, getPicture };

@@ -4,63 +4,89 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Weather Journal</title>
+  <title>Travel Planer</title>
 </head>
 
 <body>
   <div id="app">
-    <div class="holder headline">
-      <i class="fas fa-umbrella-beach"></i>
-      Weather Journal App
-    </div>
-    <div class="row">
-      <div class="holder country">
-        <label for="city">Destination</label>
-        <input type="text" id="city" placeholder="enter your city here">
+    <header>
+      <div class="flex">
+        <i class="fas fa-umbrella-beach"></i>
+        Travel Planer
       </div>
-    </div>
-    <div class="row">
-      <div class="holder start-date">
-        <label for="start">Start Date</label>
-        <input type="date" id="start" name="trip-start">
-      </div>
-      <div class="info-text" id="new-countdown"></div>
-    </div>
-    <div class="row">
-      <div class="holder end-date">
-        <label for="end">End Date</label>
-        <input type="date" id="end" name="trip-end">
-      </div>
-      <div class="info-text" id="new-nights"></div>
-    </div>
-    <div class="row row-bottom">
-      <div class="row">
-        <img id="image" class="image-responsive" alt="Image of the destination" />
-      </div>
-      <div class="row">
-        <h3>Current Weather</h3>
-        <div id="weather_icon"></div>
-        <div id="weather_shorty"></div>
-      </div>
-      <div class="row">
-        <h3>Typical Weather</h3>
-        <div id="historic_weather_shorty"></div>
-      </div>
-      <button id="search" type="submit"> Search </button>
-    </div>
-
-    <div class="row">
-      <div class="holder entry">
-        <div class="title">Most Recent Entry</div>
-        <div id="entryHolder">
-          <div id="date"></div>
-          <div id="temp"></div>
-          <div id="content"></div>
+    </header>
+    <main>
+      <!-- Section - Destination Search -->
+      <section id="search-section">
+        <h2>Destination Search</h2>
+        <div class="row">
+          <div class="flex country">
+            <label for="city">Destination</label>
+            <input type="text" id="city" placeholder="enter your city here">
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
+        <div class="row">
+          <div class="flex start-date">
+            <label for="start">Start Date</label>
+            <input type="date" id="start" name="trip-start">
+          </div>
+          <div class="info-text" id="new-countdown"></div>
+        </div>
+        <div class="row">
+          <div class="flex end-date">
+            <label for="end">End Date</label>
+            <input type="date" id="end" name="trip-end">
+          </div>
+        </div>
+        <button id="search" type="submit"> Search </button>
+      </section>
+      <!-- Section End - Destination Search -->
+      <!-- Section - Search Result -->
+      <section id="result-section">
+        <h2>Search Result</h2>
+        <div class="row row-bottom">
 
+          <h3 id="city_name"></h3>
+          <span id="country"></span>(<span id="country_code"></span>)
+
+          <div class="row">
+            <h3>Current Weather</h3>
+            <div id="weather_icon"></div>
+            <div id="weather_shorty"></div>
+          </div>
+          <div class="row">
+            <h3>Typical Weather</h3>
+            <div id="historic_weather_shorty"></div>
+          </div>
+          <div class="row">
+            <img id="image" class="image-responsive" alt="Image of the destination" />
+          </div>
+        </div>
+        <div class="row">
+          <button>Save Trip</button>
+        </div>
+      </section>
+      <!-- Section End - Search Result -->
+      <!-- Section - Travel Grid -->
+      <section id="travels-section">
+        <h2>Travel Plan</h2>
+        <div class="grid">
+
+        </div>
+      </section>
+      <!-- Section End - Travel Grid -->
+    </main>
+    <footer>
+      <h1>Style Examples</h1>
+      <h1>Heading 1</h1>
+      <h2>Heading 2</h2>
+      <h3>Heading 3</h3>
+      <h4>Heading 4</h4>
+      <h5>Heading 5</h5>
+      <h6>Heading 6</h6>
+      <p>Paragraph</p>
+    </footer>
+  </div>
 </body>
 
 </html>

@@ -1,21 +1,6 @@
 const weatherIcons = require('../assets/weatherbit/weatherbit-icons');
 
-/* Function to make an info string, containing the place, temperature and main-weather */
-const createInfo = (weather) => {
-  // convert from kelvin to celsius
-  const tempC = Math.round(weather.main.temp - 273.15);
-  const info = `${weather.name}, ${tempC}°C, ${weather.weather[0].main}`;
-  return info;
-};
-
 /* DOM Manipulation */
-const writeRecentEntry = (entry) => {
-  document.querySelector('#date').innerHTML = new Date(
-    entry.date
-  ).toUTCString();
-  document.querySelector('#temp').innerHTML = entry.info;
-  document.querySelector('#content').innerHTML = entry.content;
-};
 
 function setDateInputs(start, end) {
   document.querySelector('#start').valueAsDate = start;
@@ -28,6 +13,12 @@ function setCountdown(countdown) {
 
 function setNights(nights) {
   document.querySelector('#new-nights').textContent = nights;
+}
+
+function setCityDetails(city) {
+  document.querySelector('#city_name').textContent = city.name;
+  document.querySelector('#country').textContent = city.countryName;
+  document.querySelector('#country_code').textContent = city.countryCode;
 }
 
 function setWeather(weather) {
@@ -53,11 +44,10 @@ function setCityPicture(url) {
 
 export {
   setDateInputs,
+  setCityDetails,
   setWeather,
   setHistoricWeather,
   setCityPicture,
-  createInfo,
-  writeRecentEntry,
   setCountdown,
   setNights,
 };

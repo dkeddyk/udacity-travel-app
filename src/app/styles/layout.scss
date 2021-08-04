@@ -1,0 +1,16 @@
+.row {
+  display: flex;
+  height: fit-content;
+  flex-direction: row;
+  column-gap: 5vw;
+  padding: 1vw;
+  flex-wrap: wrap;
+}
+
+.row-bottom {
+  align-items: flex-end;
+}
+
+.flex {
+  flex: 1;
+}

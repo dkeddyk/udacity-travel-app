@@ -1,4 +1,4 @@
-import { initDateInput } from './js/controller';
+import { initDateInput, initExistingTrips } from './js/controller';
 import './js/events';
 import './styles/style.scss';
 
@@ -9,6 +9,4 @@ navigator.serviceWorker.getRegistrations().then(function (registrations) {
 });
 
 initDateInput();
-
-// FOR DEBUG ONLY
-document.querySelector('#search').dispatchEvent(new Event('click'));
+initExistingTrips();

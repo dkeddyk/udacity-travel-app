@@ -1,3 +1,5 @@
+import { removeTrip } from './controller';
+
 const weatherIcons = require('../assets/weatherbit/weatherbit-icons');
 
 /* DOM Manipulation */
@@ -12,6 +14,7 @@ function setCountdown(countdown) {
 }
 
 function setNights(nights) {
+  document.querySelector('#duration').textContent = nights;
   document.querySelector('#new-nights').textContent = nights;
 }
 
@@ -45,6 +48,32 @@ function setCityPicture(url) {
   document.querySelector('#image').setAttribute('src', url);
 }
 
+function toggleSearch(value) {
+  document.querySelector('#search-section').style.display = value
+    ? 'block'
+    : 'none';
+  document.querySelector('#result-section').style.display = value
+    ? 'none'
+    : 'block';
+}
+
+function renderTrips(trips) {
+  const container = new DocumentFragment();
+  for (const trip of trips) {
+    const element = document.createElement('p');
+    element.dataset.id = trip.id;
+    element.textContent = `${trip.city.name} from ${trip.start} to ${trip.end}`;
+    const deleteIcon = document.createElement('i');
+    deleteIcon.classList.add('icon-btn', 'fas', 'fa-trash');
+    deleteIcon.textContent = deleteIcon.addEventListener('click', () =>
+      removeTrip(trip.id)
+    );
+    element.appendChild(deleteIcon);
+    container.appendChild(element);
+  }
+  document.querySelector('#travel-grid').replaceChildren(container);
+}
+
 export {
   setDateInputs,
   setCityDetails,
@@ -53,4 +82,6 @@ export {
   setCityPicture,
   setCountdown,
   setNights,
+  toggleSearch,
+  renderTrips,
 };

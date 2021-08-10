@@ -73,6 +73,11 @@ body {
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
+            &.duration {
+              color: $secondary;
+              flex: 0.5;
+              align-items: center;
+            }
           }
           @media (max-width: 1400px) {
             display: flex;
@@ -93,6 +98,7 @@ body {
       }
 
       #result-section {
+        display: none;
         grid-area: result;
         color: $primary-light;
         background-color: $highlight-background;
@@ -210,14 +216,27 @@ body {
           display: flex;
           padding-top: 20px;
           justify-content: flex-end;
+          gap: 50px;
           button {
             font-size: 20px;
+            &.primary {
+              color: $secondary;
+              background-color: $primary;
+            }
+            &.secondary {
+              color: $primary;
+              background-color: $secondary;
+            }
           }
         }
       }
 
       #travels-section {
         grid-area: travels;
+
+        .fa-trash {
+          color: $danger;
+        }
       }
     }
   }

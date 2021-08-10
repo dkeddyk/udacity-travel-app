@@ -1,3 +1,6 @@
+var trips = [];
+var currentTrip;
+
 function calculateDayDifference(second, first = Date.now()) {
   const dayInterval = 1000 * 60 * 60 * 24;
   const floorToDay = (d) => Math.floor(d / dayInterval) * dayInterval;
@@ -20,4 +23,55 @@ function getNights(second, first = Date.now()) {
   return `Back to Future?`;
 }
 
-export { getNights, getCountdown };
+function initTrips() {
+  const json = localStorage.getItem('trips');
+  if (json) {
+    trips = JSON.parse(json);
+  }
+  return trips;
+}
+
+function saveTrip() {
+  currentTrip.id = Date.now();
+  trips.push(currentTrip);
+  storeTrips();
+  return trips;
+}
+function storeTrips() {
+  localStorage.setItem('trips', JSON.stringify(trips));
+}
+
+function newTrip(trip) {
+  if (trip) {
+    currentTrip = trip;
+  }
+  return currentTrip;
+}
+
+function getTrips() {
+  return trips;
+}
+
+function deleteTrip(id) {
+  var trip = trips.find((elem) => elem.id == id);
+  trips.splice(trips.indexOf(trip), 1);
+  storeTrips();
+  return trips;
+}
+
+function clearTrips() {
+  trips = [];
+  storeTrips();
+  return trips;
+}
+
+export {
+  getNights,
+  getCountdown,
+  newTrip,
+  initTrips,
+  saveTrip,
+  getTrips,
+  deleteTrip,
+  clearTrips,
+};

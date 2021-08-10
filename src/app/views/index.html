@@ -30,8 +30,11 @@
             <label for="end">End Date</label>
             <input type="date" id="end" name="trip-end">
           </div>
+          <div class="flex duration">
+            <span id="duration">End Date</span>
+          </div>
         </form>
-        <button id="search" class="stretch" type="submit"> Search </button>
+        <button id="btn-search" class="stretch" type="submit"> Search </button>
       </section>
       <!-- Section End - Destination Search -->
       <!-- Section - Search Result -->
@@ -106,7 +109,8 @@
         </div>
 
         <div class="bottom">
-          <button>Save Trip</button>
+          <button id="btn-reset" class="secondary">Search other</button>
+          <button id="btn-save" class="primary">Save Trip</button>
         </div>
 
 
@@ -116,11 +120,9 @@
       <section id="travels-section">
         <div class="card">
           <h2>All Travels</h2>
-          <div class="grid">
-
-          </div>
+          <div id="travel-grid"></div>
         </div>
-
+        <button id="btn-clear-trips">Clear Trips</button>
       </section>
       <!-- Section End - Travel Grid -->
     </main>

@@ -12,13 +12,22 @@ import {
   setHistoricWeather,
   setCityPicture,
   setCityDetails,
+  renderTrips,
 } from './view.js';
-import { getCountdown, getNights } from './model.js';
+import {
+  getCountdown,
+  getNights,
+  initTrips,
+  newTrip,
+  saveTrip as saveTripinModel,
+  deleteTrip,
+  clearTrips as clearTripsinModel,
+} from './model.js';
 
 // Event listener to add function to existing HTML DOM element
 
 /* Function called by event listener */
-const search = (cityString, start, end) => {
+const search = (city, start, end) => {
   const year = new Date().getFullYear();
   const diff = new Date(end).getFullYear() - new Date(start).getFullYear();
   start = new Date(new Date(start).setFullYear(year - diff - 1))
@@ -27,9 +36,10 @@ const search = (cityString, start, end) => {
   end = new Date(new Date(end).setFullYear(year - 1))
     .toISOString()
     .slice(0, 10);
-  getCity(cityString)
+  getCity(city)
     .then((city) => {
       if (city) {
+        newTrip({ city, start, end });
         setCityDetails(city);
         getWeather(city.lat, city.lng).then((weather) => setWeather(weather));
         getHistoricWeather(city.lat, city.lng, start, end).then(
@@ -44,20 +54,9 @@ const search = (cityString, start, end) => {
         });
       } else {
         alert(
-          `Could not find a city, which is starts with the given string: ${cityString}`
+          `Could not find a city, which is starts with the given string: ${city}`
         );
       }
-      /* postContent(content, createInfo(weather))
-        .then(() => {
-          getData().then((projectData) => {
-            writeRecentEntry(projectData);
-          });
-        })
-        .catch((postError) => {
-          alert('There was an error posting your content!');
-          log(postError);
-          return;
-        });*/
     })
     .catch((weatherError) => {
       alert('There was an error gathering the current weather!');
@@ -84,6 +83,25 @@ function initDateInput() {
   refreshNights(start, end);
 }
 
+function initExistingTrips() {
+  const trips = initTrips();
+  if (trips && trips.length && trips.length > 0) {
+    renderTrips(trips);
+  }
+}
+
+function saveTrip() {
+  renderTrips(saveTripinModel());
+}
+
+function clearTrips() {
+  renderTrips(clearTripsinModel());
+}
+
+function removeTrip(trip) {
+  renderTrips(deleteTrip(trip));
+}
+
 // Protocol Functions
 const log = (message) => {
   console.log(`${new Date().toISOString()} - App Log:`);
@@ -92,4 +110,14 @@ const log = (message) => {
 
 // adding click event listener to generate button
 
-export { initDateInput, refreshCountdown, refreshNights, log, search };
+export {
+  initDateInput,
+  initExistingTrips,
+  refreshCountdown,
+  refreshNights,
+  log,
+  search,
+  saveTrip,
+  removeTrip,
+  clearTrips,
+};

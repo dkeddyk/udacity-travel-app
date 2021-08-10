@@ -15,9 +15,9 @@ function getCountdown(second, first = Date.now()) {
 
 function getNights(second, first = Date.now()) {
   const days = calculateDayDifference(second, first);
-  if (days == 1) return '1 night';
-  if (days >= 0) return `${days} nights`;
-  return `back to future`;
+  if (days == 1) return '1 Night';
+  if (days >= 0) return `${days} Nights`;
+  return `Back to Future?`;
 }
 
 export { getNights, getCountdown };

@@ -9,3 +9,6 @@ navigator.serviceWorker.getRegistrations().then(function (registrations) {
 });
 
 initDateInput();
+
+// FOR DEBUG ONLY
+document.querySelector('#search').dispatchEvent(new Event('click'));

@@ -11,44 +11,214 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 
 // Debug only
 * {
-  border: 1px solid black;
+  // border: 1px solid black;
 }
 
 body {
-  background: $white;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  display: flex;
+  justify-content: center;
+  background: $background;
+  font-family: $font-family;
   padding: 5px;
   min-width: fit-content;
 
   #app {
     display: flex;
     flex-direction: column;
-    min-height: 97vh;
-    background: $background;
+    background: white;
+    min-width: 600px;
 
     header {
+      color: $secondary;
+      background-color: $primary;
       font-size: 48px;
+      padding: 24px 20px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      @include shadow;
     }
 
     main {
       display: grid;
+      grid-template-columns: 1fr 4fr;
       grid-template-areas:
-        'search  result  result'
-        'travels travels travels';
+        'search  result'
+        'travels travels';
+      gap: 20px;
+      @media (max-width: 1400px) {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          'search'
+          'result'
+          'travels';
+        gap: 20px;
+      }
+
       #search-section {
         grid-area: search;
+        background-color: $primary;
+        color: white;
+
+        h2 {
+          @include banner;
+        }
+
+        * {
+          font-size: 20px;
+        }
+
+        form {
+          padding-bottom: 20px;
+          .flex {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+          }
+          @media (max-width: 1400px) {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 10px;
+
+            .flex {
+              width: 50%;
+              @media (max-width: 960px) {
+                &.country {
+                  min-width: 100%;
+                }
+              }
+            }
+          }
+        }
       }
 
       #result-section {
         grid-area: result;
+        color: $primary-light;
+        background-color: $highlight-background;
+
+        .grid {
+          display: grid;
+          grid-template-areas:
+            'header   header    image image'
+            'length    length      image image'
+            'weather  historic  image image';
+          grid-template-columns: repeat(4, 1fr);
+          gap: 10px;
+
+          @media (max-width: 1200px) {
+            grid-template-areas:
+              'header   header'
+              'length   length'
+              'image    image'
+              'weather  historic';
+            grid-template-columns: repeat(2, 1fr);
+          }
+
+          .header {
+            padding-bottom: 1em;
+            grid-area: header;
+            h2 {
+              @include banner;
+              width: 75%;
+              margin-bottom: 0.5em;
+            }
+          }
+
+          .length {
+            grid-area: length;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+            column-gap: 2em;
+
+            .row {
+              align-items: center;
+              gap: 2em;
+
+              .column {
+                align-items: center;
+                row-gap: 5px;
+                i {
+                  font-size: 1.5em;
+                }
+              }
+              .info-text {
+                font-size: 1.5em;
+              }
+            }
+          }
+
+          .image {
+            grid-area: image;
+            padding: 0;
+            justify-self: center;
+            @media (min-width: 600px) and (max-width: 1200px) {
+              max-width: 646px;
+            }
+
+            img {
+              border-radius: inherit;
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
+
+          .weather,
+          .historic {
+            flex: 1 1 0;
+            .piece {
+              column-gap: 10px;
+              min-height: 84px;
+
+              .value-wrapper,
+              #temp,
+              #wind_spd,
+              #wind_dir,
+              #hist_spd {
+                font-size: 1.5em;
+                padding: 11.5px 0;
+
+                sup {
+                  font-size: 0.55em;
+                }
+              }
+              .column {
+                align-items: center;
+                #icon {
+                  width: 3em;
+                }
+                .subtitle {
+                  text-align: center;
+                }
+              }
+            }
+          }
+
+          .weather {
+            grid-area: weather;
+          }
+
+          .historic {
+            grid-area: historic;
+          }
+        }
+
+        .bottom {
+          display: flex;
+          padding-top: 20px;
+          justify-content: flex-end;
+          button {
+            font-size: 20px;
+          }
+        }
       }
 
       #travels-section {
         grid-area: travels;
       }
-    }
-
-    section {
     }
   }
 }

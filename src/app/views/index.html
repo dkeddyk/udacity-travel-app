@@ -10,82 +10,123 @@
 <body>
   <div id="app">
     <header>
-      <div class="flex">
-        <i class="fas fa-umbrella-beach"></i>
-        Travel Planer
-      </div>
+      <i class="fas fa-umbrella-beach"></i>
+      Travel Planer
     </header>
     <main>
       <!-- Section - Destination Search -->
-      <section id="search-section">
-        <h2>Destination Search</h2>
-        <div class="row">
+      <section id="search-section" class="card">
+        <h2>Where are you going?</h2>
+        <form>
           <div class="flex country">
             <label for="city">Destination</label>
-            <input type="text" id="city" placeholder="enter your city here">
+            <input type="text" id="city" placeholder="enter your city here" value="Andernach">
           </div>
-        </div>
-        <div class="row">
           <div class="flex start-date">
             <label for="start">Start Date</label>
             <input type="date" id="start" name="trip-start">
           </div>
-          <div class="info-text" id="new-countdown"></div>
-        </div>
-        <div class="row">
           <div class="flex end-date">
             <label for="end">End Date</label>
             <input type="date" id="end" name="trip-end">
           </div>
-        </div>
-        <button id="search" type="submit"> Search </button>
+        </form>
+        <button id="search" class="stretch" type="submit"> Search </button>
       </section>
       <!-- Section End - Destination Search -->
       <!-- Section - Search Result -->
-      <section id="result-section">
-        <h2>Search Result</h2>
-        <div class="row row-bottom">
-
-          <h3 id="city_name"></h3>
-          <span id="country"></span>(<span id="country_code"></span>)
-
-          <div class="row">
+      <section id="result-section" class="card">
+        <div class="grid">
+          <div class="header">
+            <h2>My trip to: <span id="city_name"></span></h2>
+            <div class="subtitle"><span>Located at&nbsp;<span id="lon"></span>,&nbsp;<span
+                  id="lat"></span>&nbsp;-&nbsp;<span id="country"></span>&nbsp;(<span id="country_code"></span>)</div>
+          </div>
+          <div class="piece length">
+            <div class="row">
+              <div class="column">
+                <i>✈️</i><span class="subtitle">Departure</span>
+              </div>
+              <span class="info-text" id="new-countdown"></span>
+            </div>
+            <div class="row">
+              <div class="column">
+                <i>🛌</i>
+                <span class="subtitle">Stay</span>
+              </div>
+              <span class="info-text" id="new-nights"></span>
+            </div>
+          </div>
+          <div class="piece image">
+            <img id="image" alt="Image of the destination" />
+          </div>
+          <div class="weather">
             <h3>Current Weather</h3>
-            <div id="weather_icon"></div>
-            <div id="weather_shorty"></div>
+            <div class="piece">
+              <div class="column">
+                <span id="temp"></span>
+                <span class="subtitle">C°</span>
+              </div>
+              <div class="column">
+                <div id="icon"></div>
+                <span id="weather_text" class="subtitle"></span>
+              </div>
+              <div class="column">
+                <span id="wind_spd"></span>
+
+                <span class="subtitle">km/h</span>
+              </div>
+              <div class="column">
+                <span id="wind_dir"></span>
+                <span class="subtitle">Direction</span>
+              </div>
+            </div>
           </div>
-          <div class="row">
+          <div class="historic">
             <h3>Typical Weather</h3>
-            <div id="historic_weather_shorty"></div>
-          </div>
-          <div class="row">
-            <img id="image" class="image-responsive" alt="Image of the destination" />
+            <div class="piece">
+              <div class="column">
+                <span class="value-wrapper"><span id="hist_min"></span><sup>°C</sup></span>
+                <span class="subtitle">Min</span>
+              </div>
+              <div class="column">
+                <span class="value-wrapper"><span id="hist_max"></span><sup>°C</sup></span>
+                <span class="subtitle">Max</span>
+              </div>
+              <div class="column">
+                <span class="value-wrapper"><span id="hist_clouds"></span><span>%</span></span>
+                <span class="subtitle">Clouds</span>
+              </div>
+              <div class="column">
+                <span id="hist_spd"></span>
+                <span class="subtitle">km/h</span>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="row">
+
+        <div class="bottom">
           <button>Save Trip</button>
         </div>
+
+
       </section>
       <!-- Section End - Search Result -->
       <!-- Section - Travel Grid -->
       <section id="travels-section">
-        <h2>Travel Plan</h2>
-        <div class="grid">
+        <div class="card">
+          <h2>All Travels</h2>
+          <div class="grid">
 
+          </div>
         </div>
+
       </section>
       <!-- Section End - Travel Grid -->
     </main>
-    <footer>
-      <h1>Style Examples</h1>
-      <h1>Heading 1</h1>
-      <h2>Heading 2</h2>
-      <h3>Heading 3</h3>
-      <h4>Heading 4</h4>
-      <h5>Heading 5</h5>
-      <h6>Heading 6</h6>
-      <p>Paragraph</p>
-    </footer>
+  </div>
+  <footer>
+  </footer>
   </div>
 </body>
 

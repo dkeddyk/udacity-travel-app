@@ -16,7 +16,7 @@ const getCityPictureFromApi = async (query) => {
     previewWidth: 150,
     previewHeight: 63,
     webformatURL:
-      'https://pixabay.com/get/g2cc9d3469e6cce80531225e4ee071e7cf4a6c8950a47bbf238f24df0188d4a955493fe162ed98d9343b832c8b510d4d78096397b7378e23f5f0de52adf4651ee_640.jpg',
+      'https://cdn.pixabay.com/photo/2019/10/04/23/13/rhine-4526695_960_720.jpg',
     webformatWidth: 640,
     webformatHeight: 272,
     largeImageURL:

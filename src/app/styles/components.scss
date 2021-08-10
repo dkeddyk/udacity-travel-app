@@ -1,10 +1,14 @@
 @import 'colors';
 @import 'layout';
+@import 'typography';
+
+@mixin shadow {
+  box-shadow: 3px 3px 5px#444;
+}
 
 /*  Basic Styling To Override Default For Basic HTML Elements */
 label {
   display: block;
-  font-size: 27px;
 }
 
 input {
@@ -13,34 +17,63 @@ input {
   width: 100%;
   background: $input-background;
   color: $secondary;
-  font-size: 20px;
-  font-family: 'Oswald', sans-serif;
+  font-family: $font-family;
   border: none;
+  padding: 0 1px;
 }
 
 textarea {
   background: $input-background;
   color: $secondary;
-  font-size: 20px;
   height: 9em;
-  font-family: 'Oswald', sans-serif;
+  font-family: $font-family;
 }
 
 button {
-  background: $primary;
-  color: $secondary;
-  font-size: 26px;
-  font-family: 'Oswald', sans-serif;
+  background: $secondary;
+  color: $primary;
+  font-family: $font-family;
   border: none;
-  box-shadow: 2px 4px 5px #444;
+  padding: 0.5em 1.5em;
+  border-radius: 0.5em;
+  @include shadow;
+
+  &.stretch {
+    width: 100%;
+  }
 }
 
-@media (max-width: 600px) {
-  .row {
-    flex-direction: column;
-  }
+img {
+  max-width: 100%;
+  height: auto;
+}
 
-  .row-bottom {
-    align-items: center;
-  }
+.card {
+  padding: 20px;
+  border-radius: 20px;
+  border: 1px solid $primary-light;
+  @include shadow;
+}
+
+.piece {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  border: 1px solid $primary-light;
+  border-radius: 20px;
+  padding: 10px 20px;
+  gap: 5px;
+}
+
+@mixin banner($font-size: 1.5em, $padding: 20px) {
+  font-size: $font-size;
+  margin-left: -$padding;
+  padding: 20px;
+  padding-left: $padding;
+  border-radius: 0 20px 20px 0;
+  @include shadow;
+  color: $primary;
+  background-color: $secondary;
+  width: max-content;
 }

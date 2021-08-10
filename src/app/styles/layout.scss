@@ -2,8 +2,6 @@
   display: flex;
   height: fit-content;
   flex-direction: row;
-  column-gap: 5vw;
-  padding: 1vw;
   flex-wrap: wrap;
 }
 
@@ -11,6 +9,22 @@
   align-items: flex-end;
 }
 
+.column {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
 .flex {
   flex: 1;
+}
+
+@media (max-width: 600px) {
+  .row {
+    flex-direction: column;
+  }
+
+  .row-bottom {
+    align-items: center;
+  }
 }

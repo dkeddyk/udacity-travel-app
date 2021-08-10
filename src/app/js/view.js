@@ -17,6 +17,8 @@ function setNights(nights) {
 
 function setCityDetails(city) {
   document.querySelector('#city_name').textContent = city.name;
+  document.querySelector('#lon').textContent = city.lng;
+  document.querySelector('#lat').textContent = city.lat;
   document.querySelector('#country').textContent = city.countryName;
   document.querySelector('#country_code').textContent = city.countryCode;
 }
@@ -24,18 +26,19 @@ function setCityDetails(city) {
 function setWeather(weather) {
   const weatherIcon = new Image();
   weatherIcon.src = weatherIcons.get(weather.weather.icon);
-  document.querySelector('#weather_icon').replaceChildren(weatherIcon);
-  document.querySelector('#weather_shorty').textContent = `${
-    weather.temp
-  }°C, ${Math.round(weather.wind_spd)} km/h ${weather.wind_cdir}`;
+  document.querySelector('#icon').replaceChildren(weatherIcon);
+  document.querySelector('#weather_text').textContent =
+    weather.weather.description;
+  document.querySelector('#temp').textContent = weather.temp;
+  document.querySelector('#wind_spd').textContent = weather.wind_spd.toFixed(1);
+  document.querySelector('#wind_dir').textContent = weather.wind_cdir;
 }
 
 function setHistoricWeather(weather) {
-  document.querySelector('#historic_weather_shorty').textContent = `${
-    weather.min_temp
-  }°C, ${weather.max_temp}°C, ${Math.round(weather.wind_spd)} km/h, ${
-    weather.clouds
-  }% Clouds`;
+  document.querySelector('#hist_min').textContent = weather.min_temp;
+  document.querySelector('#hist_max').textContent = weather.max_temp;
+  document.querySelector('#hist_clouds').textContent = weather.clouds;
+  document.querySelector('#hist_spd').textContent = weather.wind_spd.toFixed(1);
 }
 
 function setCityPicture(url) {

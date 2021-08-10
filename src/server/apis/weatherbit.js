@@ -82,6 +82,34 @@ const getHistoricWeatherFromApi = async (lat, lon, start, end) => {
   log(
     `External GET from Weatherbit API: Requesting current weather for coords lat=${lat}, lon=${lon}, start_date=${start}, end_date=${end} with ${url}.`
   );
+  return Promise.resolve({
+    rh: 70.2,
+    wind_spd: 3.8,
+    slp: 1022,
+    max_wind_spd: 6.7,
+    max_wind_dir: 220,
+    max_wind_spd_ts: 1483232400,
+    wind_gust_spd: 12.7,
+    min_temp_ts: 1483272000,
+    max_temp_ts: 1483308000,
+    dewpt: 1.8,
+    snow: 0,
+    snow_depth: 1.0,
+    precip: 10.5,
+    precip_gpm: 13.5,
+    wind_dir: 189,
+    max_dhi: 736.3,
+    dhi: 88,
+    max_temp: 10,
+    pres: 1006.4,
+    max_uv: 5,
+    t_dhi: 2023.6,
+    datetime: '2021-08-05',
+    temp: 7.86,
+    min_temp: 5,
+    clouds: 43,
+    ts: 1483228800,
+  });
   return fetch(url, {
     method: 'GET',
     mode: 'cors',
@@ -89,42 +117,6 @@ const getHistoricWeatherFromApi = async (lat, lon, start, end) => {
     log(
       'External GET from Weatherbit API: Received Response. Try to unpack JSON.'
     );
-    // return {
-    //   rh: null,
-    //   max_wind_spd_ts: 1627941600,
-    //   t_ghi: 7453.6,
-    //   max_wind_spd: null,
-    //   solar_rad: null,
-    //   wind_gust_spd: null,
-    //   max_temp_ts: 1627941600,
-    //   min_temp_ts: 1627941600,
-    //   clouds: null,
-    //   max_dni: 894.1,
-    //   precip_gpm: 0,
-    //   wind_spd: null,
-    //   slp: null,
-    //   ts: 1627941600,
-    //   max_ghi: 855.1,
-    //   temp: null,
-    //   pres: null,
-    //   dni: 436.8,
-    //   dewpt: null,
-    //   snow: null,
-    //   dhi: 53.9,
-    //   precip: 0,
-    //   wind_dir: null,
-    //   max_dhi: 116.1,
-    //   ghi: 310.6,
-    //   max_temp: null,
-    //   t_dni: 10482.5,
-    //   max_uv: null,
-    //   t_dhi: 1293.1,
-    //   datetime: '2021-08-03',
-    //   t_solar_rad: null,
-    //   min_temp: null,
-    //   max_wind_dir: null,
-    //   snow_depth: null,
-    // };
     return response
       .json()
       .then((weatherData) => {

@@ -75,6 +75,7 @@ const setTrip = async (trip, unsaved = false) => {
   getPicture(city.name).then(async (imgObj) => {
     if (!imgObj)
       await getPicture(city.countryName).then((countryImage) => {
+        console.log(countryImage);
         imgObj = countryImage;
       });
     setCityPicture(imgObj.webformatURL);

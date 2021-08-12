@@ -92,12 +92,18 @@ function renderTrips(trips) {
         
         From ${formatDate(start)} to ${formatDate(end)}
       </p>
-      <p class="bottom subtitle">
-        Created on ${formatDate(new Date(trip.id))}
-      </p>`;
+      <div class="bottom">
+      <a id="a-${trip.id}">Details</a>
+        <span class="subtitle">
+          Created on ${formatDate(new Date(trip.id))}
+        </span>
+      </div>`;
     container.appendChild(item);
     item
       .querySelector(`#trp-${trip.id}`)
+      .addEventListener('click', () => setTrip(trip));
+    item
+      .querySelector(`#a-${trip.id}`)
       .addEventListener('click', () => setTrip(trip));
     item
       .querySelector(`#del-${trip.id}`)
@@ -107,7 +113,6 @@ function renderTrips(trips) {
 }
 
 function setDisplayResult(result) {
-  console.log('hide: ', result);
   if (result) {
     document.querySelector('#result-section .grid').classList.remove('hide');
     document.querySelector('#result-section .bottom').classList.remove('hide');

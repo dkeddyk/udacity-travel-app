@@ -278,11 +278,27 @@ body {
           }
 
           .piece {
+            h3:hover {
+              color: $secondary;
+            }
             flex-direction: column;
             align-items: flex-start;
             justify-content: flex-start;
-            .bottom.subtitle {
-              margin-top: 0;
+            .bottom {
+              display: flex;
+              justify-content: space-between;
+              a {
+                color: $primary;
+                text-decoration: none;
+                font-style: normal;
+                &:hover {
+                  color: $secondary;
+                  cursor: pointer;
+                }
+              }
+              .subtitle {
+                margin-top: 0;
+              }
             }
           }
         }

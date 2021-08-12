@@ -18,19 +18,19 @@
       <section id="search-section" class="card">
         <h2>Where are you going?</h2>
         <form>
-          <div class="flex country">
+          <div class="field city">
             <label for="city">Destination</label>
             <input type="text" id="city" placeholder="enter your city here" value="Andernach">
           </div>
-          <div class="flex start-date">
+          <div class="field start-date">
             <label for="start">Start Date</label>
             <input type="date" id="start" name="trip-start">
           </div>
-          <div class="flex end-date">
+          <div class="field end-date">
             <label for="end">End Date</label>
             <input type="date" id="end" name="trip-end">
           </div>
-          <div class="flex duration">
+          <div class="piece duration">
             <span id="duration">End Date</span>
           </div>
         </form>
@@ -39,6 +39,7 @@
       <!-- Section End - Destination Search -->
       <!-- Section - Search Result -->
       <section id="result-section" class="card">
+        <div class="no-trip">Your next destination?</div>
         <div class="grid">
           <div class="header">
             <h2>My trip to: <span id="city_name"></span></h2>
@@ -50,14 +51,14 @@
               <div class="column">
                 <i>✈️</i><span class="subtitle">Departure</span>
               </div>
-              <span class="info-text" id="new-countdown"></span>
+              <span class="info-text" id="countdown"></span>
             </div>
             <div class="row">
               <div class="column">
                 <i>🛌</i>
                 <span class="subtitle">Stay</span>
               </div>
-              <span class="info-text" id="new-nights"></span>
+              <span class="info-text" id="stay"></span>
             </div>
           </div>
           <div class="piece image">
@@ -109,8 +110,8 @@
         </div>
 
         <div class="bottom">
-          <button id="btn-reset" class="secondary">Search other</button>
           <button id="btn-save" class="primary">Save Trip</button>
+          <p id="created"></p>
         </div>
 
 
@@ -119,10 +120,13 @@
       <!-- Section - Travel Grid -->
       <section id="travels-section">
         <div class="card">
-          <h2>All Travels</h2>
+          <div class="heading">
+            <h2>All Travels</h2>
+            <button id="btn-clear-trips">Clear Trips</button>
+          </div>
           <div id="travel-grid"></div>
         </div>
-        <button id="btn-clear-trips">Clear Trips</button>
+
       </section>
       <!-- Section End - Travel Grid -->
     </main>

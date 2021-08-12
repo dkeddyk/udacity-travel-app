@@ -1,11 +1,4 @@
-import {
-  search,
-  refreshCountdown,
-  refreshNights,
-  saveTrip,
-  clearTrips,
-} from './controller';
-import { toggleSearch } from './view';
+import { search, refreshNights, saveTrip, clearTrips } from './controller';
 
 // Search Button Clicked
 document.querySelector('#btn-search').addEventListener('click', () => {
@@ -17,12 +10,10 @@ document.querySelector('#btn-search').addEventListener('click', () => {
     return;
   }
   search(city, start, end);
-  toggleSearch(false);
 });
 
 // Start Date Changed
 document.querySelector('#start').addEventListener('change', () => {
-  refreshCountdown(document.querySelector('#start').value);
   refreshNights(
     document.querySelector('#start').value,
     document.querySelector('#end').value
@@ -39,13 +30,8 @@ document
     )
   );
 
-// Toogle Search
-document
-  .querySelector('#btn-reset')
-  .addEventListener('click', () => toggleSearch(true));
 document.querySelector('#btn-save').addEventListener('click', () => {
   saveTrip();
-  toggleSearch(true);
 });
 
 document

@@ -35,9 +35,12 @@ function saveTrip() {
   currentTrip.id = Date.now();
   trips.push(currentTrip);
   storeTrips();
-  return trips;
+  return currentTrip;
 }
 function storeTrips() {
+  trips = trips.sort(function (a, b) {
+    return new Date(a.start) - new Date(b.start);
+  });
   localStorage.setItem('trips', JSON.stringify(trips));
 }
 

@@ -1,6 +1,14 @@
-import { removeTrip } from './controller';
+import { removeTrip, setTrip } from './controller';
+import { getCountdown, getNights } from './model';
 
 const weatherIcons = require('../assets/weatherbit/weatherbit-icons');
+
+const formatDate = (d) =>
+  new Intl.DateTimeFormat(navigator.language ?? 'en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  }).format(d);
 
 /* DOM Manipulation */
 
@@ -10,12 +18,15 @@ function setDateInputs(start, end) {
 }
 
 function setCountdown(countdown) {
-  document.querySelector('#new-countdown').textContent = countdown;
+  document.querySelector('#countdown').textContent = countdown;
 }
 
 function setNights(nights) {
   document.querySelector('#duration').textContent = nights;
-  document.querySelector('#new-nights').textContent = nights;
+}
+
+function setStay(nights) {
+  document.querySelector('#stay').textContent = nights;
 }
 
 function setCityDetails(city) {
@@ -48,30 +59,73 @@ function setCityPicture(url) {
   document.querySelector('#image').setAttribute('src', url);
 }
 
-function toggleSearch(value) {
-  document.querySelector('#search-section').style.display = value
-    ? 'block'
-    : 'none';
-  document.querySelector('#result-section').style.display = value
-    ? 'none'
-    : 'block';
+function showBottom(save = false, created) {
+  if (save) {
+    document.querySelector('#btn-save').style.display = 'block';
+    document.querySelector('#created').textContent = '';
+    return;
+  }
+  document.querySelector('#btn-save').style.display = 'none';
+  if (created)
+    document.querySelector(
+      '#created'
+    ).textContent = `Trip created on ${formatDate(new Date(created))}`;
 }
 
 function renderTrips(trips) {
   const container = new DocumentFragment();
   for (const trip of trips) {
-    const element = document.createElement('p');
-    element.dataset.id = trip.id;
-    element.textContent = `${trip.city.name} from ${trip.start} to ${trip.end}`;
-    const deleteIcon = document.createElement('i');
-    deleteIcon.classList.add('icon-btn', 'fas', 'fa-trash');
-    deleteIcon.textContent = deleteIcon.addEventListener('click', () =>
-      removeTrip(trip.id)
-    );
-    element.appendChild(deleteIcon);
-    container.appendChild(element);
+    const item = document.createElement('div');
+    item.classList.add('piece', 'list-item');
+    const start = new Date(trip.start);
+    const end = new Date(trip.end);
+    item.innerHTML = `    
+      <div class="heading">
+        <h3 id="trp-${trip.id}">${getNights(end, start)} in ${
+      trip.city.name
+    }        
+        </h3>
+        <span id="del-${trip.id}" class="icon-btn fas fa-trash"></span>
+      </div>
+      <span class="subtitle">Starting ${getCountdown(start)}</span>
+      <p class="body">
+        
+        From ${formatDate(start)} to ${formatDate(end)}
+      </p>
+      <p class="bottom subtitle">
+        Created on ${formatDate(new Date(trip.id))}
+      </p>`;
+    container.appendChild(item);
+    item
+      .querySelector(`#trp-${trip.id}`)
+      .addEventListener('click', () => setTrip(trip));
+    item
+      .querySelector(`#del-${trip.id}`)
+      .addEventListener('click', () => removeTrip(trip.id));
   }
   document.querySelector('#travel-grid').replaceChildren(container);
+}
+
+function setDisplayResult(result) {
+  console.log('hide: ', result);
+  if (result) {
+    document.querySelector('#result-section .grid').classList.remove('hide');
+    document.querySelector('#result-section .bottom').classList.remove('hide');
+    document.querySelector('#result-section .no-trip').classList.add('hide');
+  } else {
+    document.querySelector('#result-section .grid').classList.add('hide');
+    document.querySelector('#result-section .bottom').classList.add('hide');
+    document.querySelector('#result-section .no-trip').classList.remove('hide');
+  }
+}
+
+function scrollToResult() {
+  window.scrollTo({
+    top:
+      document.querySelector('#result-section').getBoundingClientRect().top +
+      window.pageYOffset,
+    behavior: 'smooth',
+  });
 }
 
 export {
@@ -82,6 +136,9 @@ export {
   setCityPicture,
   setCountdown,
   setNights,
-  toggleSearch,
+  setStay,
+  showBottom,
   renderTrips,
+  setDisplayResult,
+  scrollToResult,
 };

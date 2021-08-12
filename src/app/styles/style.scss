@@ -69,14 +69,16 @@ body {
 
         form {
           padding-bottom: 20px;
-          .flex {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            &.duration {
-              color: $secondary;
-              flex: 0.5;
-              align-items: center;
+          .field {
+            flex: 1;
+          }
+          .duration {
+            height: max-content;
+            margin-top: 29px;
+            background-color: $input-background;
+            #duration {
+              color: $primary;
+              font-style: italic;
             }
           }
           @media (max-width: 1400px) {
@@ -85,10 +87,10 @@ body {
             flex-wrap: wrap;
             gap: 10px;
 
-            .flex {
+            .field {
               width: 50%;
               @media (max-width: 960px) {
-                &.country {
+                &.city {
                   min-width: 100%;
                 }
               }
@@ -98,12 +100,29 @@ body {
       }
 
       #result-section {
-        display: none;
+        .no-trip {
+          &.hide {
+            display: none;
+          }
+          display: flex;
+          height: 100%;
+          min-height: 480px;
+          font-size: 4em;
+          align-items: flex-start;
+          justify-content: center;
+          background-color: $primary;
+          background-image: url(../assets/no-trip.jpg);
+          background-size: cover;
+          color: $secondary;
+        }
         grid-area: result;
         color: $primary-light;
         background-color: $highlight-background;
 
         .grid {
+          &.hide {
+            display: none;
+          }
           display: grid;
           grid-template-areas:
             'header   header    image image'
@@ -213,19 +232,21 @@ body {
         }
 
         .bottom {
+          &.hide {
+            display: none;
+          }
           display: flex;
           padding-top: 20px;
           justify-content: flex-end;
           gap: 50px;
           button {
             font-size: 20px;
-            &.primary {
-              color: $secondary;
-              background-color: $primary;
-            }
-            &.secondary {
-              color: $primary;
-              background-color: $secondary;
+
+            color: $secondary;
+            background-color: $primary;
+
+            &:hover {
+              background-color: $primary-light;
             }
           }
         }
@@ -233,7 +254,38 @@ body {
 
       #travels-section {
         grid-area: travels;
+        .heading {
+          display: flex;
+          width: 100%;
+          color: $primary;
+          flex-flow: row nowrap;
+          align-items: center;
+          justify-content: space-between;
+        }
 
+        #travel-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 20px;
+          @media (min-width: 1201px) and (max-width: 1600px) {
+            grid-template-columns: repeat(3, 1fr);
+          }
+          @media (min-width: 801px) and (max-width: 1200px) {
+            grid-template-columns: repeat(2, 1fr);
+          }
+          @media (max-width: 800px) {
+            grid-template-columns: repeat(1, 1fr);
+          }
+
+          .piece {
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            .bottom.subtitle {
+              margin-top: 0;
+            }
+          }
+        }
         .fa-trash {
           color: $danger;
         }

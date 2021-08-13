@@ -12,8 +12,9 @@ document.querySelector('#btn-search').addEventListener('click', () => {
   search(city, start, end);
 });
 
-// Start Date Changed
-document.querySelector('#start').addEventListener('change', () => {
+//Start Date Changed
+document.querySelector('#start').addEventListener('change', (e) => {
+  e.preventDefault();
   refreshNights(
     document.querySelector('#start').value,
     document.querySelector('#end').value

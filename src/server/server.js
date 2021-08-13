@@ -35,7 +35,9 @@ console.log(__dirname);
 const port = 5000;
 
 // Lauchning Port Listener
-app.listen(port, () => log('> Server is up and running on port : ' + port));
+const server = app.listen(port, () =>
+  log('> Server is up and running on port : ' + port)
+);
 
 /**
  * Functional Behavior
@@ -56,3 +58,8 @@ app.get('/weather/historic', require('./routes').historicWeather);
 
 // GET Picture based on the search string
 app.get('/picture', require('./routes').cityPicture);
+
+// needed for testing
+module.exports = {
+  server,
+};

@@ -69,6 +69,7 @@ function clearTrips() {
 }
 
 export {
+  calculateDayDifference,
   getNights,
   getCountdown,
   newTrip,

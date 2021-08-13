@@ -22,7 +22,7 @@ function setCountdown(countdown) {
 }
 
 function setNights(nights) {
-  document.querySelector('#duration').textContent = nights;
+  window.document.querySelector('#duration').textContent = nights;
 }
 
 function setStay(nights) {
@@ -134,6 +134,7 @@ function scrollToResult() {
 }
 
 export {
+  formatDate,
   setDateInputs,
   setCityDetails,
   setWeather,

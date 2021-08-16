@@ -66,10 +66,10 @@ Run the test script, in order to test all the test in this project. For more inf
 
 Additionally to the basic requirements the following features have been implemented.
 
-- Add **end date** and display **length of trip**.
-- Pull in an **image for the country** from Pixabay API when the entered location brings up no results (good for obscure localities).
-- Allow the user to **remove the trip**.
-- Use **Local Storage** to save the data so that when they close, then revisit the page, their information is still there.
-- Incorporate **icons into forecast**.
-- Allow the user to add **additional trips** (this may take some heavy reworking, but is worth the challenge).
-  - Automatically **sort** additional trips **by countdown**.
+- Add `end date` and display `length of trip`.
+- Pull in an `image for the country` from Pixabay API when the entered location brings up no results (good for obscure localities).
+- Allow the user to `remove the trip`.
+- Use `Local Storage` to save the data so that when they close, then revisit the page, their information is still there.
+- Incorporate `icons into forecast`.
+- Allow the user to add `additional trips` (this may take some heavy reworking, but is worth the challenge).
+  - Automatically `sort` additional trips `by countdown`.

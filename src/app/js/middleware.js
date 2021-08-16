@@ -1,4 +1,4 @@
-const host = 'http://localhost:5000';
+const host = 'http://localhost:8080';
 
 /* Function to GET Web API Data*/
 

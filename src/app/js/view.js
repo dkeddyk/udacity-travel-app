@@ -1,8 +1,13 @@
 import { removeTrip, setTrip } from './controller';
 import { getCountdown, getNights } from './model';
 
+/** @type {*} The weather icons to show according to the weather code returned by the used weather api.*/
 const weatherIcons = require('../assets/weatherbit/weatherbit-icons');
-
+/**
+ * App-wide standard format for dates, depending on the clients localization.
+ *
+ * @param {Date} d
+ */
 const formatDate = (d) =>
   new Intl.DateTimeFormat(navigator.language ?? 'en-US', {
     year: 'numeric',
@@ -12,23 +17,49 @@ const formatDate = (d) =>
 
 /* DOM Manipulation */
 
+/**
+ * Sets the given dates in the date inputs of the search mask.
+ *
+ * @param {Date} start The start date of the trip.
+ * @param {Date} end The end date of the trip.
+ */
 function setDateInputs(start, end) {
   document.querySelector('#start').valueAsDate = start;
   document.querySelector('#end').valueAsDate = end;
 }
 
+/**
+ * Sets the countdown field in the result area.
+ *
+ * @param {String} countdown The string representation of the countdown.
+ */
 function setCountdown(countdown) {
   document.querySelector('#countdown').textContent = countdown;
 }
 
+/**
+ * Sets the duration field of the search mask. Don't confound with setNights, which sets the field in the result area.
+ *
+ * @param {String} nights The representation of the amount of nights, the trip expands over.
+ */
 function setNights(nights) {
   window.document.querySelector('#duration').textContent = nights;
 }
 
+/**
+ * Sets the info field containing the trip length in nights. Don't confound with setNights, which sets the field in the search area.
+ *
+ * @param {String} nights The representation of the amount of nights, the trip expands over.
+ */
 function setStay(nights) {
   document.querySelector('#stay').textContent = nights;
 }
 
+/**
+ * Sets all city detail fields in the result area.
+ *
+ * @param {*} city The city object of the places api. Should have the following attributes: name, lng, lat, countryName and countryCode
+ */
 function setCityDetails(city) {
   document.querySelector('#city_name').textContent = city.name;
   document.querySelector('#lon').textContent = city.lng;
@@ -37,6 +68,11 @@ function setCityDetails(city) {
   document.querySelector('#country_code').textContent = city.countryCode;
 }
 
+/**
+ * Sets the weather fields in the result area. Don't confound with the setHisoricWeather function, which only sets the historic weather fields.
+ *
+ * @param {*} weather The object holding the current weather. Should contain the following attributes: weather.icon, weather.description, temp, wind_spd, wind_cdir
+ */
 function setWeather(weather) {
   const weatherIcon = new Image();
   weatherIcon.src = weatherIcons.get(weather.weather.icon);
@@ -48,6 +84,11 @@ function setWeather(weather) {
   document.querySelector('#wind_dir').textContent = weather.wind_cdir;
 }
 
+/**
+ * Sets the historic weather fields in the result area. Don't confound with the setWeather function, which only sets the current weather fields.
+ *
+ * @param {*} weather The object holding the historic weather. Should contain the following attributes: min_temp, max_temp, wind_spd, clouds
+ */
 function setHistoricWeather(weather) {
   document.querySelector('#hist_min').textContent = weather.min_temp;
   document.querySelector('#hist_max').textContent = weather.max_temp;
@@ -55,10 +96,22 @@ function setHistoricWeather(weather) {
   document.querySelector('#hist_spd').textContent = weather.wind_spd.toFixed(1);
 }
 
+/**
+ * Sets the src attribute of the img, which then shows the location picture
+ *
+ * @param {*} url
+ */
 function setCityPicture(url) {
   document.querySelector('#image').setAttribute('src', url);
 }
 
+/**
+ * Sets the display style of the save button and sets the field. which holds the creation date of the trip.
+ *
+ * @param {boolean} [save=false] Wether the save button shall be visible or not. Default ist false.
+ * @param {*} created The representation of the creation date of the trip. Not needed, if save is true.
+ * @return {*}
+ */
 function showBottom(save = false, created) {
   if (save) {
     document.querySelector('#btn-save').style.display = 'block';
@@ -72,6 +125,11 @@ function showBottom(save = false, created) {
     ).textContent = `Trip created on ${formatDate(new Date(created))}`;
 }
 
+/**
+ * Renders the existing trips in the travel grid area
+ *
+ * @param {Array} trips An array of Trips. A trip contains the city object, start and end UNIX timestamp.
+ */
 function renderTrips(trips) {
   const container = new DocumentFragment();
   for (const trip of trips) {
@@ -112,6 +170,11 @@ function renderTrips(trips) {
   document.querySelector('#travel-grid').replaceChildren(container);
 }
 
+/**
+ * Sets the visibility of the result and search section. In a former version, this was needed, due to alternatively displaying. Currently not used, but held for further development.
+ *
+ * @param {boolean} result Wether the result section shall be visible. Search section is set contrary.
+ */
 function setDisplayResult(result) {
   if (result) {
     document.querySelector('#result-section .grid').classList.remove('hide');
@@ -124,6 +187,10 @@ function setDisplayResult(result) {
   }
 }
 
+/**
+ * Scrolls to the beginning of the result section.
+ *
+ */
 function scrollToResult() {
   window.scrollTo({
     top:

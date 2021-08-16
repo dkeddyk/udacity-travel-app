@@ -46,7 +46,7 @@ const getCityPictureFromApi = async (query) => {
     return result
       .json()
       .then((obj) => {
-        console.log(obj);
+        log(obj);
         log(
           'External GET from Pixabay API: Unpacking JSON sucessful. Picking first entry.'
         );

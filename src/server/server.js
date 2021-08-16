@@ -29,10 +29,8 @@ const log = require('./log/log');
 // Static link to Website folder
 app.use(express.static('dist'));
 
-console.log(__dirname);
-
 // Port Setting
-const port = 5000;
+const port = 8080;
 
 // Lauchning Port Listener
 const server = app.listen(port, () =>

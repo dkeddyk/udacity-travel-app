@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { GenerateSW } = require('workbox-webpack-plugin');
 
 module.exports = {
   mode: 'production', // "production" | "development" | "none"
@@ -68,7 +69,7 @@ module.exports = {
       cleanStaleWebpackAssets: true,
       protectWebpackAssets: false,
     }),
-    // new WorkboxPlugin.GenerateSW(),
+    new GenerateSW(),
   ],
   context: __dirname,
   target: 'web',

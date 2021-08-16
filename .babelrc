@@ -1,4 +1,13 @@
 {
-  "presets": ["@babel/preset-env"],
-  "plugins": ["@babel/transform-runtime", "transform-require-context"]
+  "env": {
+    "dev": {
+      "presets": ["@babel/preset-env"],
+      "plugins": ["@babel/transform-runtime"]
+    },
+
+    "test": {
+      "presets": ["@babel/preset-env"],
+      "plugins": ["@babel/transform-runtime", "transform-require-context"]
+    }
+  }
 }

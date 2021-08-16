@@ -1,3 +1,4 @@
+process.env.NODE_ENV = 'test';
 const { formatDate } = require('../js/view');
 
 describe('test1', () => {

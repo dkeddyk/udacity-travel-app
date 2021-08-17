@@ -20,13 +20,11 @@ body {
   background: $background;
   font-family: $font-family;
   padding: 5px;
-  min-width: fit-content;
 
   #app {
     display: flex;
     flex-direction: column;
     background: white;
-    min-width: 600px;
 
     header {
       color: $secondary;
@@ -36,6 +34,9 @@ body {
       border-radius: 20px;
       margin-bottom: 20px;
       @include shadow;
+      @media (max-width: 300px) {
+        padding: 0;
+      }
     }
 
     main {
@@ -61,6 +62,9 @@ body {
 
         h2 {
           @include banner;
+          @media (max-width: 300px) {
+            max-width: fit-content;
+          }
         }
 
         * {
@@ -91,9 +95,15 @@ body {
               width: 50%;
               @media (max-width: 960px) {
                 &.city {
-                  min-width: 100%;
+                  min-width: initial;
                 }
               }
+            }
+          }
+          @media (max-width: 600px) {
+            flex-direction: column;
+            .field {
+              width: 100%;
             }
           }
         }
@@ -138,6 +148,15 @@ body {
               'image    image'
               'weather  historic';
             grid-template-columns: repeat(2, 1fr);
+          }
+          @media (max-width: 600px) {
+            grid-template-areas:
+              'header'
+              'length'
+              'image'
+              'weather'
+              'historic';
+            grid-template-columns: 1fr;
           }
 
           .header {
